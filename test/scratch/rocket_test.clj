@@ -3,7 +3,7 @@
             [scratch.rocket :refer :all]))
 
 (deftest spherical-coordinate-test
-  (let [pos {:x 1 :y 2 :z 3}]
+  (let [pos {:x 1.0 :y 2.0 :z 3.0}]
     (testing "spherical->cartesian"
       (is (= (spherical->cartesian {:r 2
                                     :phi 0
@@ -14,7 +14,7 @@
       (is (= pos (-> pos cartesian->spherical spherical->cartesian))))))
 
 (deftest makes-orbit
-  (let [trajectory (->> (atlas-v)
+  (let [trajectory (->> (atlas-v (centaur))
                         prepare
                         (trajectory 1))]
     (when (crashed? trajectory)
